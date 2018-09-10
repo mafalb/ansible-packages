@@ -1,0 +1,39 @@
+# vim: set ft=yaml ts=2:
+---
+
+- name: dependencies for ansible are present
+  package:
+    name:
+      - libsemanage-python
+      - policycoreutils-python
+      - pyOpenSSL
+    state: present
+
+- name: Install common tools
+  package:
+    name:
+      - telnet
+      - strace
+      - ltrace
+      - lsof
+      - tcpdump
+      - mailx
+      - bind-utils
+      - tmux
+      - yum-plugin-changelog
+      - pciutils
+      - man-pages
+      - ntpdate
+      - sysstat
+    state: present
+
+- name: tools for reading documentation are present
+  when: packages.install_doc
+  package:
+    name:
+      - pinfo
+      - lynx
+      - man-db
+      - man-pages
+      - man-pages-overrides
+    state: present
